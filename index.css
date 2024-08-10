@@ -1,4 +1,6 @@
 /*index.css*/
 h2 {
-    color: blue;
+    color: #222;
+    font-size: 3rem;
+    margin-bottom: 1rem;
   }
