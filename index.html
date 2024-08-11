@@ -14,7 +14,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-          <h2>To Do List</h2>
+          <h2>Tasks</h2>
           <div id = 'todo-list'>
 
           </div>
@@ -24,6 +24,25 @@
           <input id="new-task-detail" type="text" placeholder="new task" required/>
           <button>Add</button>
         </form>
+        <div class="col-12">
+          <h2>Status</h2>
+          <table class="table table-responsive">
+            <thead>
+              <t>
+                <th scope="col">Date added</th>
+                <th scope="col">Active Tasks</th>
+                <th scope="col">Completed Tasks</th>
+              </t>
+            </thead>
+            <tbody>
+              <tr>
+                  <td id="Date">
+                  <td id="Active">
+                  <td id="Completed">
+              </tr>
+            </table>
+          </tr>
+        </div>
       </div>
     </div>
   </body>
