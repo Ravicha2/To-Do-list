@@ -7,6 +7,17 @@ h2 {
 .delete{
   margin-right: 3rem;
 }
-table, th, td {
-  border:1px solid black;
+
+#add-task{
+  margin-top: 2rem;
+}
+.Active{
+  color: rgb(32, 177, 32);
+}
+.Complete{
+  
+  color: rgb(222, 68, 68);
+}
+.date{
+  margin-bottom: 1cap;
 }

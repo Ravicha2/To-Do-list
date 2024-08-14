@@ -22,26 +22,16 @@
         </div>
         <form id="add-task">
           <input id="new-task-detail" type="text" placeholder="new task" required/>
-          <button>Add</button>
+          <button type="submit" id="submit-task">Add</button>
         </form>
         <div class="col-12">
           <h2>Status</h2>
-          <table class="table table-responsive">
-            <thead>
-              <t>
-                <th scope="col">Date added</th>
-                <th scope="col">Active Tasks</th>
-                <th scope="col">Completed Tasks</th>
-              </t>
-            </thead>
-            <tbody>
-              <tr>
-                  <td id="Date">
-                  <td id="Active">
-                  <td id="Completed">
-              </tr>
-            </table>
-          </tr>
+            <button id="filterCompleted">toggle completed tasks</button>
+            <button id="filterActive">toggle Active tasks</button>
+            <div id = "Status" class="col-xs-12">
+              
+                 
+            </div>
         </div>
       </div>
     </div>

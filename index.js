@@ -1,6 +1,7 @@
 // index.js
 //test API by GET ID1
 $(document).ready(function () {
+    var list = [];
     var displayAll = function () {
         $.ajax({
             type: 'GET',
@@ -8,22 +9,11 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (response, textStatus) {
                 $('#todo-list').empty();
-                $('#Active').empty();
-                $('Complete').empty();
-                $('Date').empty();
+                list = [];
                 response.tasks.forEach(function (task) {
+                    list.push([task.content, task.created_at, task.completed]);
                     $('#todo-list').append('<div class="row"><p class="col-xs-8">' + task.content + '</p><button class="delete" data-id="' + task.id + '">Delete</button>'+
                     '<input type="checkbox" class="mark-complete" data-id="' + task.id + '"' + (task.completed ? 'checked' : '') + '>');
-                    $('#Date').append('<div class="row"><p class="col-xs-8">' + task.created_at.slice(0,10) + '</p>')
-                    console.log(response);
-                    if (task.completed){
-                            $('Completed').empty();
-                            $('#Completed').append('<div class="row"><p class="col-xs-8">' + task.content + '</p>');
-                    }
-                    else{
-                            $('Active').empty();
-                            $('#Active').append('<div class="row"><p class="col-xs-8">' + task.content + '</p>');
-                    }
                 });
             },
             
@@ -47,6 +37,7 @@ $(document).ready(function () {
             }),
             success: function (response, textStatus) {
               console.log(response);
+              displayAll();
             },
             error: function (request, textStatus, errorMessage) {
               console.log(errorMessage);
@@ -54,7 +45,7 @@ $(document).ready(function () {
         });
     }
     $('#add-task').on('submit', function (e) {
-        //e.preventDefault(); //prevent reloading
+        e.preventDefault(); //prevent reloading
         createTask();
     });
     var deleteTask = function (id) {
@@ -110,7 +101,35 @@ $(document).ready(function () {
         }
    });
 
+   $(document).on('click', '#filterCompleted', function () {
+    $('#Status').empty();
+    $('#Status').append('<h3>Completed Task</h3>');
+    if (list.length === 0) {
+        console.log("No tasks available to filter.");
+        return;
+    }
+    for (var i = 0; i < list.length; i++) {
+        if (list[i][2] === true) {
+            $('#Status').append('<div class = "Complete col-xs-6">' + list[i][0] + '</div>');
+            $('#Status').append('<div class = "date col-xs-6">' + list[i][1].slice(0,10) + '</div>');
+        }
+    }
+    });
 
+    $(document).on('click', '#filterActive', function () {
+        $('#Status').empty();
+        $('#Status').append('<h3>Active Task</h3>');
+        if (list.length === 0) {
+            console.log("No tasks available to filter.");
+            return;
+        }
+        for (var i = 0; i < list.length; i++) {
+            if (list[i][2] === false) {
+                $('#Status').append('<div class = "Active col-xs-6">' + list[i][0] + '</div>');
+                $('#Status').append('<div class = "date col-xs-6">' + list[i][1].slice(0,10) + '</div>');
+            }
+        }
+        });
 });
 
 
